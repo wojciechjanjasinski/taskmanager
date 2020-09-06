@@ -14,7 +14,7 @@
 </label><br/>
     Status zadania:
     <label>
-        <select name="Goal Status">
+        <select name="goalStatus">
             <option th:each="goalStatus:${T(tm.taskmanager.modell.GoalStatus).values()}"
                     th:text="${goalStatus}"
                     th:value="${goalStatus}">
@@ -44,6 +44,8 @@
     </label>
     <input type="submit" value="Zapisz"/>
 </form>
-
+<a href="/all">Wyświetl wszystkie zadania</a><br/>
+<a href="/all_opened">Wyświetl wszystkie nieukończone zadania</a><br/>
+<a href="/all_terminated">Wyświetl archiwum zadań</a><br/>
 </body>
 </html>
