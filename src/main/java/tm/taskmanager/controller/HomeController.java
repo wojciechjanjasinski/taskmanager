@@ -49,10 +49,19 @@ public class HomeController {
     @GetMapping("/add")
     public String addTask(Model model){
         Task task = new Task();
-        taskRepository.save(task);
         model.addAttribute("task", task);
         return "add";
     }
+
+    @PostMapping("/add")
+    String addTask(Task task) {
+        taskRepository.save(task);
+        return "redirect:/all";
+    }
+
+
+
+
 
     @GetMapping("/delate")
     public String removeTask(@RequestParam Long id){

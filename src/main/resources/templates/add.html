@@ -5,7 +5,7 @@
     <title>Dodaj nowe zadanie</title>
 </head>
 <body>
-<form method="get" th:action="@{/add}" th:object="${task}">
+<form method="post" th:action="@{/add}" th:object="${task}">
     Nazwa zadania: <label>
     <input type="text" th:field="*{name}">
 </label><br/>
@@ -42,7 +42,7 @@
             </option>
         </select>
     </label>
-    <input type="submit" value="Zapisz">
+    <input type="submit" value="Zapisz"/>
 </form>
 
 </body>
