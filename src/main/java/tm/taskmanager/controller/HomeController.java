@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import tm.taskmanager.modell.Quit;
 import tm.taskmanager.modell.Task;
 import tm.taskmanager.repository.TaskRepository;
 
@@ -33,22 +34,24 @@ public class HomeController {
 
     @GetMapping("/all_opened")
     public String findAllOpenedTasks (Model model){
-        List<Task> all = taskRepository.findTasksByQuit_OpenedMatchesAndOrderByDeadlineDesc();
+        List<Task> all = taskRepository.findTasksByQuitOrderByDeadlineDesc(Quit.OPENED);
         model.addAttribute("all_opened", all);
         return "/all_opened";
     }
 
     @GetMapping("/all_terminated")
     public String findAllTerminatedTasks (Model model){
-        List<Task> all = taskRepository.findTasksByQuit_TerminatedMatchesAndOrderByDeadlineDesc();
+        List<Task> all = taskRepository.findTasksByQuitOrderByDeadlineDesc(Quit.TERMINATED);
         model.addAttribute("all_terminated", all);
         return "/all_terminated";
     }
 
-    @PostMapping("/add")
-    public String addTask(Task task){
+    @GetMapping("/add")
+    public String addTask(Model model){
+        Task task = new Task();
         taskRepository.save(task);
-        return "redirect:/all";
+        model.addAttribute("task", task);
+        return "add";
     }
 
     @GetMapping("/delate")
