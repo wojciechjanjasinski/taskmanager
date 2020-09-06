@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
+    
     List<Task> findTasksByQuit_OpenedMatchesAndOrderByDeadlineDesc();
     List<Task> findTasksByQuit_TerminatedMatchesAndOrderByDeadlineDesc();
 }
