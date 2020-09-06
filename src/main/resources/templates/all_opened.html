@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystkie otwarte zadania</title>
+</head>
+<body>
+<h1>Lista wszystkich otwartych zadań</h1>
+<ul>
+    <li th:each="task: ${all_opened}">
+    </li>
+</ul>
+</body>
+</html>

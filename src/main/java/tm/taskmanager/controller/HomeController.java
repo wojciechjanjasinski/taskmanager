@@ -13,10 +13,15 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     public HomeController(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
+    }
+
+    @GetMapping("/")
+    public String start (){
+        return "/index";
     }
 
     @GetMapping("/all")
@@ -28,15 +33,15 @@ public class HomeController {
 
     @GetMapping("/all_opened")
     public String findAllOpenedTasks (Model model){
-        List<Task> all = taskRepository.findTasksByQuit_OpenedIsContainingAndOrderByDeadlineDesc();
-        model.addAttribute("all_tasks", all);
+        List<Task> all = taskRepository.findTasksByQuit_OpenedMatchesAndOrderByDeadlineDesc();
+        model.addAttribute("all_opened", all);
         return "/all_opened";
     }
 
     @GetMapping("/all_terminated")
     public String findAllTerminatedTasks (Model model){
-        List<Task> all = taskRepository.findTasksByQuit_TerminatedIsContainingAndOrderByDeadlineDesc();
-        model.addAttribute("all_tasks", all);
+        List<Task> all = taskRepository.findTasksByQuit_TerminatedMatchesAndOrderByDeadlineDesc();
+        model.addAttribute("all_terminated", all);
         return "/all_terminated";
     }
 
