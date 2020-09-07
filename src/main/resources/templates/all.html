@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystkie zadania</title>
+</head>
+<body>
+<h1>Lista wszystkich zadań</h1>
+<div th:each="all: ${all_tasks}" style="border: 1px solid black; padding: 10px">
+
+    Numer zadania: <span th:text="${all.getId()}"></span><br/>
+    Nazwa zadania: <span th:text="${all.getName()}"></span><br/>
+    Opis zadania: <span th:text="${all.getDescription()}"></span><br/>
+    Status zadania: <span th:text="${all.getGoalStatus()}"></span><br/>
+    Czy zadanie zostało ukończone: <span th:text="${all.getQuit()}"></span><br/>
+    Termin ukończenia zadania: <span th:text="${all.getDeadline()}"></span><br/>
+    Kategoria zadania: <span th:text="${all.getCategory()}"></span><br/>
+
+</div>
+<a href="/all_opened">Wyświetl wszystkie nieukończone zadania</a><br/>
+<a href="/all_terminated">Wyświetl archiwum zadań</a><br/>
+<a href="/add">Dodaj zadanie</a><br/><br/>
+</body>
+</html>

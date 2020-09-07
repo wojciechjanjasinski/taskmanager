@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj nowe zadanie</title>
+</head>
+<body>
+<form method="post" th:action="@{/add}" th:object="${task}">
+    Nazwa zadania: <label>
+    <input type="text" th:field="*{name}">
+</label><br/>
+    Opis zadania: <label>
+    <input type="text" th:field="*{description}">
+</label><br/>
+    Status zadania:
+    <label>
+        <select name="goalStatus">
+            <option th:each="goalStatus:${T(tm.taskmanager.modell.GoalStatus).values()}"
+                    th:text="${goalStatus}"
+                    th:value="${goalStatus}">
+            </option>
+        </select>
+        Czy zadanie zostało ukończone? :
+    </label>
+    <label>
+        <select name="Quit">
+            <option th:each="quit:${T(tm.taskmanager.modell.Quit).values()}"
+                    th:text="${quit}"
+                    th:value="${quit}">
+            </option>
+        </select>
+    </label>
+    Termin wykonania zadania (w następującym formacie "YYYY-MM-DD HH:MM:SS"): <label>
+    <input type="text" th:field="*{deadline}">
+</label><br/>
+    Opis zadania:
+    <label>
+        <select name="category">
+            <option th:each="category:${T(tm.taskmanager.modell.Category).values()}"
+                    th:text="${category}"
+                    th:value="${category}">
+            </option>
+        </select>
+    </label>
+    <input type="submit" value="Zapisz"/>
+</form>
+<a href="/all">Wyświetl wszystkie zadania</a><br/>
+<a href="/all_opened">Wyświetl wszystkie nieukończone zadania</a><br/>
+<a href="/all_terminated">Wyświetl archiwum zadań</a><br/>
+</body>
+</html>
